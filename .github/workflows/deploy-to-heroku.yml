@@ -1,0 +1,57 @@
+name: Deploy Laravel to Heroku
+
+on:
+  push:
+    branches:
+      - main  # Adjust if your main branch has a different name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP, with Composer and extensions
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'  # Adjust to match your project's PHP version
+        extensions: mbstring, dom, curl, xml, gd, zip
+        tools: composer:v2
+
+    - name: Install Composer dependencies
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+    # Removed the step to copy .env.example to .env for production
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'  # Use the Node.js version required by your project
+
+    - name: Install NPM dependencies
+      run: npm install
+
+    - name: Compile assets
+      run: npm run build  # Adjust the script if necessary
+
+    - name: Add Heroku Git Remote
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      run: |
+        git remote add heroku https://git.heroku.com/${HEROKU_APP_NAME}.git
+
+    - name: Deploy to Heroku
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      run: |
+        git config --global user.email "justin.williams2@me.com"
+        git config --global user.name "GitHub Actions"
+        git push heroku ${GITHUB_REF#refs/heads/}:master --force
+
+    - name: Run migrations
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      run: heroku run php artisan migrate --force --app $HEROKU_APP_NAME
