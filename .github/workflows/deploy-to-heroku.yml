@@ -46,7 +46,7 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       run: |
-        git config --global user.email "justin.williams2@me.com"
+        git config --global user.email "justinwdev@gmail.com"
         git config --global user.name "GitHub Actions"
         git push heroku ${GITHUB_REF#refs/heads/}:master --force
 
