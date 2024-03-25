@@ -3,7 +3,7 @@ name: Deploy Laravel to Heroku
 on:
   push:
     branches:
-      - main  # Adjust if your main branch has a different name
+      - master  # Adjust if your main branch has a different name
 
 jobs:
   deploy:
