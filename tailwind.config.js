@@ -14,7 +14,20 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                poppins: ["Poppins", "sans-serif"],
+                oswald: ["Oswald", "sans-serif"],
+                raleway: ['Raleway', 'sans-serif'],
             },
+            colors: {
+                'background': {
+                    primary: '#E1DFD9',
+                    secondary: '#FFFFFF',
+                    special: '#4F7D61',
+                },
+            },
+            width : {
+                42: '10.5rem',
+            }
         },
     },
 
