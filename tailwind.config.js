@@ -14,8 +14,6 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                poppins: ["Poppins", "sans-serif"],
-                oswald: ["Oswald", "sans-serif"],
                 raleway: ['Raleway', 'sans-serif'],
             },
             colors: {
