@@ -23,16 +23,16 @@ const showingNavigationDropdown = ref(false);
                     <div class="flex w-full">
                         <!-- Navigation Links -->
                         <div class="hidden space-x-4 sm:flex items-center flex-1">
-                            <NavLink :href="route('home')" :active="route().current('home')">
+                            <NavLink :href="route('home')">
                                 Home
                             </NavLink>
                             <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                 About Us
                             </NavLink>
-                            <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                            <NavLink :href="route('program')" :active="route().current('dashboard')">
                                 Program
                             </NavLink>
-                            <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                            <NavLink :href="route('admission')" :active="route().current('dashboard')">
                                 Admission
                             </NavLink>
                             <NavLink :href="route('portal')" :active="route().current('portal')">
