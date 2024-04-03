@@ -10,12 +10,18 @@ const props = defineProps({
     active: {
         type: Boolean,
     },
+    dropdown: {
+        type: Boolean,
+        default: false,
+    },
 });
 
+
 const classes = computed(() =>
-    props.active
-        ? 'inline-flex items-center px-1 pt-1 underline underline-offset-4 decoration-1 decoration-solid font-raleway text-[15px] font-normal leading-5 text-black transition duration-150 ease-in-out'
-        : 'inline-flex items-center px-1 pt-1 font-raleway text-[15px] font-normal leading-5 text-black transition duration-150 ease-in-out'
+    (props.dropdown ? '' : 'inline-flex px-1')+
+    (props.active
+        ? 'items-center pt-1 underline underline-offset-4 decoration-1 decoration-solid font-raleway text-[15px] font-normal leading-5 text-black transition duration-150 ease-in-out'
+        : 'items-center pt-1 font-raleway text-[15px] font-normal leading-5 text-black transition duration-150 ease-in-out')
 );
 </script>
 

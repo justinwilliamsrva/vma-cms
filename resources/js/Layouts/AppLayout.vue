@@ -4,10 +4,19 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
+import NavDropdown from '@/Components/NavDropdown.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import SpecialButton from '@/Components/SpecialButton.vue';
 import { Link, Head } from '@inertiajs/vue3';
 import imageUrl from '@assets/images/header/VMA+Black+Logo.png';
+
+const aboutUsRoutes = [
+    {'text':'Mission', 'url':route('about')},
+    {'text':'Curriculum', 'url':route('curriculum')},
+    {'text':'Educators', 'url':route('educators')},
+    {'text':'Location', 'url':route('location')},
+    {'text':'Calendar', 'url':route('calendar')},
+];
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -19,20 +28,25 @@ const showingNavigationDropdown = ref(false);
         <div class="min-h-screen bg-background-primary">
             <nav class="px-16 py-8">
                 <!-- Primary Navigation Menu -->
-                <div class="">
+                <div class="mx-6">
                     <div class="flex w-full">
                         <!-- Navigation Links -->
                         <div class="hidden space-x-4 sm:flex items-center flex-1">
                             <NavLink :href="route('home')">
                                 Home
                             </NavLink>
-                            <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                About Us
-                            </NavLink>
-                            <NavLink :href="route('program')" :active="route().current('dashboard')">
+                            <NavDropdown >
+                                <template #trigger>
+                                    About Us
+                                </template>
+                                <Link v-for="r in aboutUsRoutes" :key="r.text" :href="r.url" class="items-center pt-1 font-raleway text-[15px] font-normal leading-5 text-black transition duration-150 ease-in-out">
+                                    {{ r.text }}
+                                </Link>
+                            </NavDropdown>
+                            <NavLink :href="route('program')">
                                 Program
                             </NavLink>
-                            <NavLink :href="route('admission')" :active="route().current('dashboard')">
+                            <NavLink :href="route('admission')">
                                 Admission
                             </NavLink>
                             <NavLink :href="route('portal')" :active="route().current('portal')">
