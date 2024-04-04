@@ -7,15 +7,16 @@ import NavLink from '@/Components/NavLink.vue';
 import NavDropdown from '@/Components/NavDropdown.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import SpecialButton from '@/Components/SpecialButton.vue';
+import MainNavLink from '@/Components/MainNavLink.vue';
 import { Link, Head } from '@inertiajs/vue3';
 import imageUrl from '@assets/images/header/VMA+Black+Logo.png';
 
 const aboutUsRoutes = [
-    {'text':'Mission', 'url':route('about')},
-    {'text':'Curriculum', 'url':route('curriculum')},
-    {'text':'Educators', 'url':route('educators')},
-    {'text':'Location', 'url':route('location')},
-    {'text':'Calendar', 'url':route('calendar')},
+    {'text':'Mission', 'url':'https://www.villagemont.org/about'},
+    {'text':'Curriculum', 'url':'https://www.villagemont.org/curriculum'},
+    {'text':'Educators', 'url':'https://www.villagemont.org/educators'},
+    {'text':'Location', 'url':'https://www.villagemont.org/location'},
+    {'text':'Calendar', 'url':'https://www.villagemont.org/calendar'},
 ];
 
 const showingNavigationDropdown = ref(false);
@@ -26,39 +27,39 @@ const showingNavigationDropdown = ref(false);
 
     <div>
         <div class="min-h-screen bg-background-primary">
-            <nav class="px-16 py-8">
+            <nav class="px-[4%] py-[2%]">
                 <!-- Primary Navigation Menu -->
-                <div class="mx-6">
+                <div class="">
                     <div class="flex w-full">
                         <!-- Navigation Links -->
-                        <div class="hidden space-x-4 sm:flex items-center flex-1">
-                            <NavLink :href="route('home')">
+                        <div class="hidden space-x-4 lg:flex items-center flex-1">
+                            <MainNavLink :href="'https://www.villagemont.org/'">
                                 Home
-                            </NavLink>
-                            <NavDropdown >
+                            </MainNavLink>
+                            <NavDropdown>
                                 <template #trigger>
                                     About Us
                                 </template>
-                                <Link v-for="r in aboutUsRoutes" :key="r.text" :href="r.url" class="items-center pt-1 font-raleway text-[15px] font-normal leading-5 text-black transition duration-150 ease-in-out">
-                                    {{ r.text }}
-                                </Link>
+                                <MainNavLink v-for="route in aboutUsRoutes" :key="route.text" :href="route.url">
+                                    {{ route.text }}
+                                </MainNavLink>
                             </NavDropdown>
-                            <NavLink :href="route('program')">
+                            <MainNavLink :href="'https://www.villagemont.org/programs'">
                                 Program
-                            </NavLink>
-                            <NavLink :href="route('admission')">
+                            </MainNavLink>
+                            <MainNavLink :href="'https://www.villagemont.org/admission'">
                                 Admission
-                            </NavLink>
+                            </MainNavLink>
                             <NavLink :href="route('portal')" :active="route().current('portal')">
                                 Portal
                             </NavLink>
                         </div>
 
                         <!-- Logo -->
-                        <div class="shrink-0 flex items-center justify-center flex-1">
-                            <Link :href="route('dashboard')">
+                        <div class="shrink-0 flex items-center justify-center">
+                            <a href="https://www.villagemont.org">
                                <img :src="imageUrl" class="w-42">
-                            </Link>
+                            </a>
                         </div>
 
                         <div class="flex-1 flex items-center justify-end">
@@ -68,7 +69,7 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <!-- Hamburger -->
-                        <div class="-me-2 flex items-center sm:hidden">
+                        <div class="-me-2 flex items-center lg:hidden">
                             <button
                                 @click="showingNavigationDropdown = !showingNavigationDropdown"
                                 class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"

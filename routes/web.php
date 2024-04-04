@@ -15,18 +15,11 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-foreach(config('urls.village') as $name => $url){
-    Route::get('/'.$name, function () use ($url) {
-        return response('', 409)->header('X-Inertia-Location', $url);
-    })->name($name);
-}
-
 Route::get('/portal', function () {
     return redirect()->route('dashboard');
 })->name('portal');
 
 Route::get('/inquiry', function () {
-    // return 'Landing Page';
     return Inertia::render('LandingPage');
 })->name('landing-page');
 
@@ -41,3 +34,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::fallback(function () {
+    return redirect()->route('landing-page');
+});
