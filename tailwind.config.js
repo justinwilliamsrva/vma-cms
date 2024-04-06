@@ -22,6 +22,9 @@ export default {
                     secondary: '#FFFFFF',
                     special: '#4F7D61',
                 },
+                'village': {
+                    green: '#4F7D61',
+                }
             },
             width : {
                 42: '10.5rem',

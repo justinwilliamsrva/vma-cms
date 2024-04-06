@@ -8,8 +8,9 @@ import NavDropdown from '@/Components/NavDropdown.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import SpecialButton from '@/Components/SpecialButton.vue';
 import MainNavLink from '@/Components/MainNavLink.vue';
+import Footer from '@/Components/Footer.vue';
 import { Link, Head } from '@inertiajs/vue3';
-import imageUrl from '@assets/images/header/VMA+Black+Logo.png';
+import imageUrl from '@assets/images/VMA+Black+Logo.png';
 
 const aboutUsRoutes = [
     {'text':'Mission', 'url':'https://www.villagemont.org/about'},
@@ -26,7 +27,7 @@ const showingNavigationDropdown = ref(false);
     <Head title="Home" />
 
     <div>
-        <div class="min-h-screen bg-background-primary">
+        <div class="min-h-screen bg-background-primary flex flex-col">
             <nav class="px-[4%] py-[2%]">
                 <!-- Primary Navigation Menu -->
                 <div class="">
@@ -139,9 +140,12 @@ const showingNavigationDropdown = ref(false);
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="flex-grow bg-background-secondary">
                 <slot />
             </main>
+
+            <!-- Footer -->
+            <Footer />
         </div>
     </div>
 </template>
