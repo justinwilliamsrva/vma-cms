@@ -1,6 +1,6 @@
 <script setup>
-    import {ref} from 'vue';
-    const showingNavigationDropdown = ref(false);
+    import {inject, ref} from 'vue';
+    let showingNavigationDropdown = inject('showingNavigationDropdown');
 
     function toggleMenu() {
         showingNavigationDropdown.value = !showingNavigationDropdown.value;
