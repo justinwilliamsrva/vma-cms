@@ -95,6 +95,7 @@ provide('showingNavigationDropdown', showingNavigationDropdown);
                         </a>
                     </div>
 
+                    <!-- Call To Action -->
                     <div class="flex-1 hidden lg:flex items-center justify-end">
                         <SpecialButton :href="route('landing-page')" class="px-9 py-5 text-sm">
                             Inquire Here!
@@ -103,34 +104,34 @@ provide('showingNavigationDropdown', showingNavigationDropdown);
 
                     <!-- Hamburger -->
                     <Hamburger />
-
                 </div>
             </nav>
+                <!-- Responsive Nave -->
                 <div
                     :class="{block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
-                    class="fixed inset-0 bg-background-primary z-10" :style="{top: topValue}"
+                    class="fixed inset-0 bg-background-primary z-10 lg:hidden" :style="{top: topValue}"
                 >
-                    <div class="pt-2 pb-3 space-y-1">
+                    <div class="flex flex-col justify-center space-y-1 h-[80%]">
                         <ResponsiveNavLink :href="'https://www.villagemont.org/'">
-                            Dashboard
+                            Home
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="'https://www.villagemont.org/'">
+                            About Us
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="'https://www.villagemont.org/programs'">
+                            Program
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="'https://www.villagemont.org/admission'">
+                            Admission
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('portal')">
+                            Portal
                         </ResponsiveNavLink>
                     </div>
-
-                    <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">
-                                Justin
-                            </div>
-                            <div class="font-medium text-sm text-gray-500">Email</div>
-                        </div>
-
-                        <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
+                    <div class="flex justify-center">
+                        <SpecialButton :href="route('landing-page')" class="px-9 py-5 text-sm">
+                            Inquire Here!
+                        </SpecialButton>
                     </div>
                 </div>
 
