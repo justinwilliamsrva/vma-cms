@@ -63,7 +63,7 @@ provide('showingNavigationDropdown', showingNavigationDropdown);
         <div class="min-h-screen bg-background-primary flex flex-col">
             <nav class="p-[6%] lg:px-[4%] lg:py-[2%]">
                 <!-- Primary Navigation Menu -->
-                <div class="flex w-full">
+                <div class="flex mx-auto max-w-7xl">
                     <!-- Navigation Links -->
                     <div class="hidden lg:flex space-x-4 items-center flex-1">
                         <MainNavLink :href="'https://www.villagemont.org/'">
