@@ -34,24 +34,22 @@ jobs:
     - name: Compile assets
       run: npm run build  # Adjust the script if necessary
 
-    - name: Add Heroku Git Remote
+    - name: Add Heroku remote
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       run: |
-        git remote add heroku https://git.heroku.com/${HEROKU_APP_NAME}.git
+        heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
 
     - name: Deploy to Heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       run: |
-        git config --global user.email "justinwdev@gmail.com"
-        git config --global user.name "GitHub Actions"
         git push heroku ${GITHUB_REF#refs/heads/}:master --force
 
     - name: Run migrations
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      run: heroku run php artisan migrate --force --app $HEROKU_APP_NAME
+      run: |
+        heroku run php artisan migrate --force --app ${{ secrets.HEROKU_APP_NAME }}
