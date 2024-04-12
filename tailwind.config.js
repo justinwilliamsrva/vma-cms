@@ -14,7 +14,27 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                raleway: ['Raleway', 'sans-serif'],
             },
+            colors: {
+                'background': {
+                    primary: '#E1DFD9',
+                    secondary: '#FFFFFF',
+                    special: '#4F7D61',
+                },
+                'village': {
+                    green: '#4F7D61',
+                }
+            },
+            width : {
+                42: '10.5rem',
+            },
+            maxWidth: {
+                '10xl': '110rem',
+              },
+            screens: {
+                '4xl': '1920px',
+            }
         },
     },
 
