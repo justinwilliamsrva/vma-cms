@@ -28,6 +28,12 @@ export default {
             },
             width : {
                 42: '10.5rem',
+            },
+            maxWidth: {
+                '10xl': '110rem',
+              },
+            screens: {
+                '4xl': '1920px',
             }
         },
     },
