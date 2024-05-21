@@ -10,6 +10,7 @@ import ResponsiveNavDropdown from '@/Components/ResponsiveNavDropdown.vue';
 import SpecialButton from '@/Components/SpecialButton.vue';
 import MainNavLink from '@/Components/MainNavLink.vue';
 import Hamburger from '@/Components/Hamburger.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Footer from '@/Components/Footer.vue';
 import { Link, Head } from '@inertiajs/vue3';
 import imageUrl from '@assets/images/VMA+Black+Logo.png';
@@ -93,7 +94,7 @@ provide('isMainContentVisible', isMainContentVisible);
                         <MainNavLink :href="'https://www.villagemont.org/admission'">
                             Admission
                         </MainNavLink>
-                        <NavLink :href="route('portal')" :active="route().current('portal')" :link="true">
+                        <NavLink :href="route('portal')" :active="route().current('portal') || route().current('login')" :link="true">
                             Portal
                         </NavLink>
                     </div>
@@ -107,9 +108,11 @@ provide('isMainContentVisible', isMainContentVisible);
 
                     <!-- Call To Action -->
                     <div class="flex-1 hidden lg:flex items-center justify-end">
-                        <SpecialButton :href="route('landing-page')" class="px-9 py-5 text-sm">
-                            Inquire Here!
-                        </SpecialButton>
+                        <PrimaryButton class="px-9 py-5 text-sm font-raleway">
+                            <Link :href="route('landing-page')">
+                                Inquire Here!
+                            </Link>
+                        </PrimaryButton>
                     </div>
 
                     <!-- Hamburger -->
@@ -136,14 +139,16 @@ provide('isMainContentVisible', isMainContentVisible);
                                 <ResponsiveNavLink :href="'https://www.villagemont.org/admission'">
                                     Admission
                                 </ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('portal')" :link="true">
+                                <ResponsiveNavLink :href="route('portal')" :active="route().current('portal') || route().current('login')" :link="true">
                                     Portal
                                 </ResponsiveNavLink>
                             </div>
                             <div class="flex justify-center">
-                                <SpecialButton :href="route('landing-page')" class="px-9 py-5 text-sm">
-                                    Inquire Here!
-                                </SpecialButton>
+                                <PrimaryButton class="px-9 py-5 text-sm">
+                                    <Link :href="href" class="bg-background-special text-white hover:opacity-50">
+                                        Inquire Here!
+                                    </Link>
+                                </PrimaryButton>
                             </div>
                         </div>
                         <div v-else class="h-full">
@@ -160,14 +165,12 @@ provide('isMainContentVisible', isMainContentVisible);
                 </div>
 
             <!-- Page Heading -->
-            <!-- <header class="bg-white shadow" v-if="$slots.header">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header> -->
 
             <!-- Page Content -->
-            <main class="flex-grow bg-background-primary">
+            <main class="min-h-96 flex-grow flex flex-col justify-center items-center bg-white mt-12">
+                <header class="bg-white" v-if="$slots.header">
+                    <slot name="header" />
+                </header>
                 <slot />
             </main>
 
